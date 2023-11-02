@@ -1,0 +1,30 @@
+version: '3'
+services:
+  ros2_node1:
+    build:
+      context: .
+      dockerfile: Dockerfile_ros2
+    container_name: ros2_node1
+    command: python3 /ros2_ws/src/pub/src/publisher.py
+    volumes:
+      - ./pub:/ros2_ws/src/pub
+    #depends_on:
+    #  - gazebo_sim
+
+  #ros2_node2:
+  #  image: ros:iron
+  #  container_name: ros2_node2
+  #  command: ros2 run <your_package_name> <your_node2_name>
+  #  volumes:
+  #    - ./your_package_directory:/ros2_ws/src/your_package_name
+  #  depends_on:
+  #    - gazebo_sim
+#
+  #gazebo_sim:
+  #  image: gazebo/gazebo:latest
+  #  container_name: gazebo_sim
+  #  environment:
+  #    - GAZEBO_MODEL_PATH=/your/gazebo/models/path
+  #  volumes:
+  #    - ./your_gazebo_models_directory:/your/gazebo/models/path
+  #  command: gazebo /path/to/your/world_file.world
