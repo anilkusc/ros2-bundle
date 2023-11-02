@@ -6,3 +6,9 @@ services:
       args:
         PACKAGE_NAME: publisher
     container_name: ros2_node1
+  ros2_node2:
+    build:
+      context: .
+      args:
+        PACKAGE_NAME: subscriber
+    container_name: ros2_node2
