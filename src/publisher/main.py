@@ -1,7 +1,9 @@
 import rclpy
 from std_msgs.msg import String
+#from loguru import logger
 
 def main(args=None):
+    #logger.warning("This is a warning message.")
     rclpy.init(args=args)
 
     node = rclpy.create_node('publisher_node')

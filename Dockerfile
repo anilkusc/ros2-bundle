@@ -4,6 +4,9 @@ SHELL ["/bin/bash", "-c"]
 
 ARG PACKAGE_NAME
 ENV PACKAGE_NAME ${PACKAGE_NAME}
+
+RUN apt update && apt install python3-pip -y
+
 WORKDIR /root/ros2_ws/src
 
 RUN source /opt/ros/iron/setup.sh && ros2 pkg create --build-type ament_python $PACKAGE_NAME
@@ -11,6 +14,8 @@ RUN source /opt/ros/iron/setup.sh && ros2 pkg create --build-type ament_python $
 WORKDIR /root/ros2_ws/src/$PACKAGE_NAME 
 
 COPY src/$PACKAGE_NAME $PACKAGE_NAME
+
+RUN pip3 install -r $PACKAGE_NAME/requirements.txt
 COPY src/package.xml package.xml
 RUN sed -i "s/<package-name>/$PACKAGE_NAME/g" package.xml
 COPY src/setup.py setup.py
