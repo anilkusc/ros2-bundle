@@ -1,6 +1,6 @@
 from setuptools import find_packages, setup
 
-package_name = 'publisher'
+package_name = '<package-name>'
 
 setup(
     name=package_name,
@@ -20,7 +20,7 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'publisher = publisher.publisher:main',
+            '<package-name> = <package-name>.main:main',
         ],
     },
 )
