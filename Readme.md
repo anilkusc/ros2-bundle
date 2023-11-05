@@ -2,6 +2,8 @@
 
 
 ## Quickstart
+
+
 1. Create your package in src folder.
 ```
     mkdir -p src/my_package
@@ -22,7 +24,34 @@
     container_name: ros2_node3
 ```
 
-4. Up containers
+4. Optional for gazebo 
+* Copy your world in gazebo folder
+```
+  cp my_world.sdf gazebo/
+```
+* add your world to docker-compose.yaml file
+```
+  gazebo-server:
+    build:
+      context: ./gazebo
+      args:
+        WORLD_NAME: my_world      
+    network_mode: "host"
+```
+
+5. Up containers
 ```
   docker-compose up -d --build
 ```
+
+6. Run gzclient for reach gazebo simulation GUI
+```
+  GAZEBO_MASTER_URI=localhost:11345 gzclient --verbose
+```
+
+
+## TO-DO
+* Fix Conflicting gazebo versions between gzserver and gzclient
+* Make ros2 and gazebo versions compatible
+* Add Web GUI support of gazebo
+* Add other simulators like deepbots
