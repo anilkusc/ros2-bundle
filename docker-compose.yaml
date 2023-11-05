@@ -12,3 +12,8 @@ services:
       args:
         PACKAGE_NAME: subscriber
     container_name: ros2_node2
+  gazebo-server:
+    build:
+      context: ./gazebo
+    network_mode: "host"
+#GAZEBO_MASTER_URI=localhost:11345 gzclient --verbose
