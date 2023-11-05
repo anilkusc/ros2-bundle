@@ -2,13 +2,13 @@ version: '3'
 services:
   ros2_node1:
     build:
-      context: .
+      context: ./src
       args:
         PACKAGE_NAME: publisher
     container_name: ros2_node1
   ros2_node2:
     build:
-      context: .
+      context: ./src
       args:
         PACKAGE_NAME: subscriber
     container_name: ros2_node2

@@ -1,5 +1,5 @@
 
-FROM gazebo:gzserver11
+FROM gazebo:gzserver10
 ARG WORLD_NAME
 ENV WORLD_NAME=${WORLD_NAME}
 WORKDIR /world

@@ -51,7 +51,7 @@
 
 
 ## TO-DO
-* Fix Conflicting gazebo versions between gzserver and gzclient
-* Make ros2 and gazebo versions compatible
+* Make ros2 and gazebo versions compatible.(gzserver 10 , ros2 foxy)
+* Extend example as both ros2 and gazebo working together
 * Add Web GUI support of gazebo
 * Add other simulators like deepbots
