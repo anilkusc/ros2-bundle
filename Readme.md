@@ -4,54 +4,28 @@
 ## Quickstart
 
 
-1. Create your package in src folder.
+1. Develop your package in src folder.
 ```
     mkdir -p src/my_package
 ```
 
-2. Copy publisher or subscriber package contents in you package
+2. Set your package name on docker-compose.yaml
 ```
-    cp -fr src/publisher/* src/my_package/
-```
-
-3. Add your service to docker-compose.yaml
-```
-  ros2_node3:
+  ros2_bundle:
     build:
-      context: .
+      context: ./src
       args:
-        PACKAGE_NAME: my_package
-    container_name: ros2_node3
+        BRIDGES: /test@std_msgs/msg/Int32@ignition.msgs.Int32,/test2@std_msgs/msg/Int32@ignition.msgs.Int32
+        PACKAGE_NAME: my_package        
+        GAZEBO_WORLD: empty_world.sdf
 ```
 
-4. Optional for gazebo 
-* Copy your world in gazebo folder
-```
-  cp my_world.sdf gazebo/
-```
-* add your world to docker-compose.yaml file
-```
-  gazebo-server:
-    build:
-      context: ./gazebo
-      args:
-        WORLD_NAME: my_world      
-    network_mode: "host"
-```
-
-5. Up containers
+3. Up containers
 ```
   docker-compose up -d --build
 ```
 
-6. Run gzclient for reach gazebo simulation GUI
-```
-  GAZEBO_MASTER_URI=localhost:11345 gzclient --verbose
-```
-
-
 ## TO-DO
-* Make ros2 and gazebo versions compatible.(gzserver 10 , ros2 foxy)
-* Extend example as both ros2 and gazebo working together
+
 * Add Web GUI support of gazebo
 * Add other simulators like deepbots

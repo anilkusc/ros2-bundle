@@ -1,20 +1,13 @@
 version: '3'
 services:
-  ros2_node1:
+  ros2_bundle:
     build:
       context: ./src
       args:
-        PACKAGE_NAME: publisher
-    container_name: ros2_node1
-  ros2_node2:
-    build:
-      context: ./src
-      args:
-        PACKAGE_NAME: subscriber
-    container_name: ros2_node2
-  gazebo-server:
-    build:
-      context: ./gazebo
-      args:
-        WORLD_NAME: double_pendulum      
-    network_mode: "host"
+        BRIDGES: /test@std_msgs/msg/Int32@ignition.msgs.Int32,/test2@std_msgs/msg/Int32@ignition.msgs.Int32
+        PACKAGE_NAME: subscriber        
+        GAZEBO_WORLD: empty_world.sdf
+
+#ign topic -t /test -m ignition.msgs.Int32 --pub "data: 1"
+#ros2 run ros_gz_bridge parameter_bridge /test@std_msgs/msg/Int32@ignition.msgs.Int32
+#ros2 topic echo /test
