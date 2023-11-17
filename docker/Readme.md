@@ -16,7 +16,7 @@
       context: ./src
       args:
         BRIDGES: /test@std_msgs/msg/Int32@ignition.msgs.Int32,/test2@std_msgs/msg/Int32@ignition.msgs.Int32
-        PACKAGE_NAME: my_package        
+        PACKAGE_NAME: my_package
         GAZEBO_WORLD: empty_world.sdf
 ```
 

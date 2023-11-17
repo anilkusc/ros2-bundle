@@ -22,9 +22,9 @@ RUN . /opt/ros/iron/setup.sh && ros2 pkg create --build-type ament_python $PACKA
 
 WORKDIR /root/ros2_ws/src/$PACKAGE_NAME 
 
-COPY $PACKAGE_NAME $PACKAGE_NAME
-
 RUN pip3 install setuptools==58.2.0
+
+COPY $PACKAGE_NAME $PACKAGE_NAME
 RUN pip3 install -r $PACKAGE_NAME/requirements.txt
 COPY package.xml package.xml
 RUN sed -i "s/<package-name>/$PACKAGE_NAME/g" package.xml
@@ -34,7 +34,6 @@ RUN sed -i "s/<package-name>/$PACKAGE_NAME/g" setup.py
 WORKDIR /root/ros2_ws
 RUN . /opt/ros/iron/setup.sh && rosdep install -i --from-path src --rosdistro iron -y
 RUN . /opt/ros/iron/setup.sh && colcon build --packages-select $PACKAGE_NAME
-#CMD source install/setup.bash && ros2 run $PACKAGE_NAME $PACKAGE_NAME
 COPY entrypoint.sh .
 COPY worlds/ .
 RUN chmod 777 entrypoint.sh

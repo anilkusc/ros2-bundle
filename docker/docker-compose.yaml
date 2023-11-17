@@ -1,0 +1,18 @@
+version: '3'
+services:
+  ros2_bundle:
+    build:
+      context: ./src
+      args:
+        BRIDGES: /model/tugbot/cmd_vel@geometry_msgs/msg/Twist@ignition.msgs.Twist
+        PACKAGE_NAME: tugbot        
+        GAZEBO_WORLD: tugbot_warehouse.sdf
+    network_mode: "host"
+    volumes:
+      - ./records/log:/root/.ignition/gazebo/log
+#ign topic -t /test -m ignition.msgs.Int32 --pub "data: 1"
+#ros2 run ros_gz_bridge parameter_bridge /test@std_msgs/msg/Int32@ignition.msgs.Int32
+#ros2 topic echo /test
+#ign topic -e -t /model/tugbot/odometry
+#ign topic -t /model/tugbot/cmd_vel -m ignition.msgs.Twist --pub "linear { x: 1 } angular { z: 0.1 }"
+#docker exec -it $(docker ps | grep ros2 | awk '{print $1}' ) bash

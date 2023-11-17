@@ -7,4 +7,4 @@ for bridge in $bridges; do
 done
 source install/setup.bash
 ros2 run $2 $2 &
-ign gazebo $3 -v -s
+ign gazebo $3 -v4 -s -r --headless-rendering --record
