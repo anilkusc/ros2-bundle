@@ -7,4 +7,4 @@ for index in "${!world_folders[@]}"; do
 done
 read world_index
 world_name="${world_folders[world_index]}"
-ign gazebo worlds/$world_name -v4 -r
+gz sim worlds/$world_name -v4 -r
