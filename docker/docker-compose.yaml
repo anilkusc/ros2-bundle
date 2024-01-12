@@ -16,3 +16,4 @@ services:
 #ign topic -e -t /model/tugbot/odometry
 #ign topic -t /model/tugbot/cmd_vel -m ignition.msgs.Twist --pub "linear { x: 1 } angular { z: 0.1 }"
 #docker exec -it $(docker ps | grep ros2 | awk '{print $1}' ) bash
+#gz topic -t /model/tugbot/cmd_vel -m gz.msgs.Twist --pub "linear { x: 1 } angular { z: 0.1 }"

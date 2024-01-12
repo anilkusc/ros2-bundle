@@ -1,1 +1,1 @@
-/model/tugbot/cmd_vel@geometry_msgs/msg/Twist@ignition.msgs.Twist,/model/tugbot/odometry@nav_msgs/msg/Odometry@ignition.msgs.Odometry
+/model/tugbot/cmd_vel@geometry_msgs/msg/Twist@gz.msgs.Twist,/model/tugbot/odometry@nav_msgs/msg/Odometry@gz.msgs.Odometry

@@ -10,8 +10,8 @@ class TugbotNode(Node):
         self.publisher_ = self.create_publisher(Twist, '/model/tugbot/cmd_vel', 10)
         self.subscription = self.create_subscription(Odometry, '/model/tugbot/odometry', self.odometry_callback, 10)
         self.subscription
-        self.linear = Vector3(x=0.0)
-        self.angular = Vector3(z=0.0)
+        self.linear = Vector3(x=1.0)
+        self.angular = Vector3(z=1.0)
         self.timer_period = 2  # seconds
         self.timer = self.create_timer(self.timer_period, self.timer_callback)
 
@@ -20,12 +20,13 @@ class TugbotNode(Node):
         twist_msg.linear = self.linear
         twist_msg.angular = self.angular
         self.publisher_.publish(twist_msg)
-        #self.get_logger().info('Published: "%s"' % twist_msg)
+        self.get_logger().info('Published: "%s"' % twist_msg)
 
     def odometry_callback(self, odometry_msg):
-        #self.get_logger().info('Listened: "%s"' % odometry_msg)
+        self.get_logger().info('Listened: "%s"' % odometry_msg)
         self.linear = Vector3(x=1.0)
         self.angular = Vector3(z=1.0)
         time.sleep(self.timer_period)
 
 #gz service -s /world/world_demo/control --reqtype gz.msgs.WorldControl --reptype gz.msgs.Boolean --timeout 3000 --req 'reset: {all: true}'
+#gz topic -t /model/tugbot/cmd_vel -m gz.msgs.Twist --pub "linear { x: 1 } angular { z: 0.1 }"

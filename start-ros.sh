@@ -1,5 +1,6 @@
 #!/bin/bash
 #set -xe
+export GZ_VERSION=garden
 local_path=$(pwd)
 pkill -f ros_gz_bridge
 rm -fr ros2_ws
