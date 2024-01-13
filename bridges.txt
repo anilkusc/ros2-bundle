@@ -1,1 +1,1 @@
-/model/tugbot/cmd_vel@geometry_msgs/msg/Twist@gz.msgs.Twist,/model/tugbot/odometry@nav_msgs/msg/Odometry@gz.msgs.Odometry
+/model/tugbot/cmd_vel@geometry_msgs/msg/Twist@gz.msgs.Twist,/model/tugbot/odometry@nav_msgs/msg/Odometry@gz.msgs.Odometry,/model/tugbot/battery/linear_battery/state@sensor_msgs/msg/BatteryState@gz.msgs.BatteryState

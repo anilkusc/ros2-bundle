@@ -12,8 +12,10 @@ services:
       - ./records/log:/root/.ignition/gazebo/log
 #ign topic -t /test -m ignition.msgs.Int32 --pub "data: 1"
 #ros2 run ros_gz_bridge parameter_bridge /test@std_msgs/msg/Int32@ignition.msgs.Int32
-#ros2 topic echo /test
-#ign topic -e -t /model/tugbot/odometry
+#ros2 topic echo /model/tugbot/odometry
+#gz topic -e -t /model/tugbot/odometry
+#gz topic -e -t /model/tugbot/battery/linear_battery/state
+#gz topic -e -t /world/world_demo/model/tugbot/link/camera_back/sensor/depth/camera_info
 #ign topic -t /model/tugbot/cmd_vel -m ignition.msgs.Twist --pub "linear { x: 1 } angular { z: 0.1 }"
 #docker exec -it $(docker ps | grep ros2 | awk '{print $1}' ) bash
 #gz topic -t /model/tugbot/cmd_vel -m gz.msgs.Twist --pub "linear { x: 1 } angular { z: 0.1 }"
