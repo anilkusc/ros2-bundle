@@ -2,13 +2,15 @@ import rclpy
 from .tugbot_node import TugbotNode
 from .rl import RL
 import time
+import random
 
 def main(args=None):
     rclpy.init(args=args)
     env = RL(TugbotNode())
     env.reset()
     while True:
-        env.step(None)
+        action = (random.uniform(-1, 1),random.uniform(-1, 1),random.uniform(-1, 1),random.uniform(-1, 1),random.uniform(-1, 1),random.uniform(-1, 1))
+        env.step(action)
         time.sleep(env.node.timer_period)
     
     #rclpy.spin_once(tugbot_node)

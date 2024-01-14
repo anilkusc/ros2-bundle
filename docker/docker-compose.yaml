@@ -12,6 +12,7 @@ services:
       - ./records/log:/root/.ignition/gazebo/log
 #ign topic -t /test -m ignition.msgs.Int32 --pub "data: 1"
 #ros2 run ros_gz_bridge parameter_bridge /test@std_msgs/msg/Int32@ignition.msgs.Int32
+
 #ros2 topic echo /model/tugbot/pose
 #gz topic -e -t /model/tugbot/odometry
 #gz topic -e -t /model/tugbot/battery/linear_battery/state
