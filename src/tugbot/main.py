@@ -6,6 +6,7 @@ import time
 def main(args=None):
     rclpy.init(args=args)
     env = RL(TugbotNode())
+    env.reset()
     while True:
         env.step(None)
         time.sleep(env.node.timer_period)

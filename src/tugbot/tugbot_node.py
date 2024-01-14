@@ -16,9 +16,7 @@ class TugbotNode(Node):
         self.subscription_pose # prevent unused variable warning
         self.subscription_tf = self.create_subscription(PoseArray, '/model/tugbot/tf', self.tf_callback, 10)
         self.subscription_tf # prevent unused variable warning
-        self.linear = Vector3(x=1.0)
-        self.angular = Vector3(z=1.0)
-        self.timer_period = 1  # seconds
+        self.timer_period = 0.1  # seconds
         self.timer = self.create_timer(self.timer_period, self.timer_callback)
         
         self.input_odometry_pose_pose_position_x = None
@@ -43,12 +41,12 @@ class TugbotNode(Node):
         self.input_tf_orientation_w = None
         self.input_battery_state = None
 
-        self.output_linear_x = None
-        self.output_linear_y = None
-        self.output_linear_z = None
-        self.output_angular_x = None
-        self.output_angular_y = None
-        self.output_angular_z = None
+        self.output_linear_x = 0.0
+        self.output_linear_y = 0.0
+        self.output_linear_z = 0.0
+        self.output_angular_x = 0.0
+        self.output_angular_y = 0.0
+        self.output_angular_z = 0.0
 
 
     def timer_callback(self):
@@ -68,6 +66,7 @@ class TugbotNode(Node):
         self.input_tf_orientation_w = tf_msg.poses[0].orientation.w
         
     def pose_callback(self, pose_msg):
+        print(pose_msg)
         self.input_pose_position_x = pose_msg.position.x
         self.input_pose_position_y = pose_msg.position.y
         self.input_pose_position_z = pose_msg.position.z
