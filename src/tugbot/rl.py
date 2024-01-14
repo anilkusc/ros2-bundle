@@ -3,7 +3,7 @@ import rclpy
 from geometry_msgs.msg import Vector3
 class RL():
     def __init__(self,node) -> None:
-        self.state_dim = 1
+        self.state_dim = 21
         self.action_dim = 1
         self.max_action = 1
         self.min_action = 1
@@ -14,7 +14,7 @@ class RL():
 
     def step(self,action):
         self.node.linear ,self.node.angular = self.calculate_cmd_vel(action)
-        print(self.node.pose_position_z)
+        print(self.node.input_tf_position_x)
         rclpy.spin_once(self.node)
     
     def calculate_cmd_vel(self,action):
