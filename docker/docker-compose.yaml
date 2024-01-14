@@ -15,6 +15,7 @@ services:
 #ros2 topic echo /model/tugbot/odometry
 #gz topic -e -t /model/tugbot/odometry
 #gz topic -e -t /model/tugbot/battery/linear_battery/state
+#gz topic -e -t /model/tugbot/pose
 #gz topic -e -t /world/world_demo/model/tugbot/link/camera_back/sensor/depth/camera_info
 #ign topic -t /model/tugbot/cmd_vel -m ignition.msgs.Twist --pub "linear { x: 1 } angular { z: 0.1 }"
 #docker exec -it $(docker ps | grep ros2 | awk '{print $1}' ) bash
