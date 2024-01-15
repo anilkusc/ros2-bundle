@@ -7,12 +7,13 @@ class GaussianNoise(object):
         self.action_dim = action_dim
         self.max_action = max_action
         self.min_action = min_action
+
+    #def sample(self, action):
+    #    action = (action + np.random.normal(0, 1, size=self.action_dim)).clip(self.min_action, self.max_action)
+    #    return action
     
     def sample(self, action):
-        noise = np.random.normal(0, 1, size=self.action_dim)
-        action = np.add(action, noise)
-        action = np.clip(action, self.min_action, self.max_action)
-        return action
+        return [random.uniform(-1,1),random.uniform(-1,1),random.uniform(-1,1),random.uniform(-1,1),random.uniform(-1,1),random.uniform(-1,1)]
 
 
 class OUNoise(object):

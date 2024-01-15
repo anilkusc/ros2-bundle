@@ -12,7 +12,7 @@ def main(args=None):
     env = RL(TugbotNode())
     all_rewards = []
     num_episodes = 10000
-    max_trajectory = 100000
+    max_trajectory = 200000
     epsilon = 1
     max_epsilon = 1
     min_epsilon = 0.001
@@ -33,15 +33,16 @@ def main(args=None):
         state = env.reset()
         trajectory = 0
         while not done:
-            action = agent.select_action(state)
             if None in state:
                 rclpy.spin_once(env.node)
                 state = env.newState()
                 continue
-
+            action = agent.select_action(state)
+            
             # epsilon greedy
             if random.uniform(0, 1) < epsilon:
                 action = noise_generator.sample(action)
+                
             next_state, reward, done = env.step(action)
             episode_total_reward += reward
             agent.replay_buffer.push((state, next_state, action, reward, float(done)))
@@ -51,14 +52,8 @@ def main(args=None):
             trajectory += 1
         agent.update()
         epsilon = min_epsilon + (max_epsilon - min_epsilon) * np.exp(-exploration_decay_rate*episode)
-        print("Training: " + str(episode+1) + "/" + str(num_episodes) + " Episode Total Reward: " + str(episode_total_reward) + ". Epsilon: " +str(epsilon) + " Step: " + str(trajectory))
-    agent.save()
-    #rclpy.spin_once(tugbot_node)
-    #rclpy.spin_once(tugbot_node)
-    #rclpy.spin_once(tugbot_node)
-    #tugbot_node.destroy_node()
-    #rclpy.shutdown()
-    #os.system("gz service -s /world/world_demo/control --reqtype gz.msgs.WorldControl --reptype gz.msgs.Boolean --timeout 3000 --req 'reset: {all: true}'")
+        print("Training: " + str(episode+1) + "/" + str(num_episodes) + " Episode Total Reward: " + str(episode_total_reward) + ". Epsilon: " +str(epsilon) + " Step: " + str(trajectory) + " Battery: " + str(state[13]))
+        agent.save()
 
 if __name__ == '__main__':
     main()

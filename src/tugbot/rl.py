@@ -14,7 +14,7 @@ class RL():
         os.system("gz service -s /world/world_demo/control --reqtype gz.msgs.WorldControl --reptype gz.msgs.Boolean --timeout 3000 --req 'reset: {all: true}'")
         return self.newState()
         
-    def step(self,action):        
+    def step(self,action):
         self.applyAction(action)
         new_state = self.newState()
         if None in new_state:
@@ -37,7 +37,7 @@ class RL():
         return is_done,is_win
     
     def evaluateReward(self,done,win,state):
-        reward = 0.001
+        reward = 0.00001
         if done:
             if win:
                 reward = 10 * state[13]
@@ -63,12 +63,12 @@ class RL():
         st.input_battery_state]
 
     def applyAction(self,action):
-        self.node.output_linear_x = action[0]
-        self.node.output_linear_y = action[1]
-        self.node.output_linear_z = action[2]
-        self.node.output_angular_x = action[3]
-        self.node.output_angular_y = action[4]
-        self.node.output_angular_z = action[5]
+        self.node.output_linear_x = float(action[0])
+        self.node.output_linear_y = float(action[1])
+        self.node.output_linear_z = float(action[2])
+        self.node.output_angular_x = float(action[3])
+        self.node.output_angular_y = float(action[4])
+        self.node.output_angular_z = float(action[5])
         rclpy.spin_once(self.node)
 
     def isStucked(self,state):

@@ -62,7 +62,6 @@ class DDPG():
         #for buffer in self.replay_buffer.storage:
             # For each Sample in replay buffer batch
             state, next_state, action, reward, done = self.replay_buffer.sample(self.batch_size)
-            #print(state)
             state = torch.FloatTensor(state).to(device)
             action = torch.FloatTensor(action).to(device)
             next_state = torch.FloatTensor(next_state).to(device)
