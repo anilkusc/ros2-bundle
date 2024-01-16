@@ -11,9 +11,9 @@ def main(args=None):
     rclpy.init(args=args)
     env = RL(TugbotNode())
     all_rewards = []
-    num_episodes = 10000
-    max_trajectory = 200000
-    epsilon = 1
+    num_episodes = 10000#10000
+    max_trajectory = 100000
+    epsilon = 1#1
     max_epsilon = 1
     min_epsilon = 0.001
     exploration_decay_rate = 0.0001
@@ -42,12 +42,12 @@ def main(args=None):
             # epsilon greedy
             if random.uniform(0, 1) < epsilon:
                 action = noise_generator.sample(action)
-                
+#
             next_state, reward, done = env.step(action)
             episode_total_reward += reward
             agent.replay_buffer.push((state, next_state, action, reward, float(done)))
-            if trajectory > max_trajectory:
-                done = True
+            #if trajectory > max_trajectory:
+            #    done = True
             state = next_state
             trajectory += 1
         agent.update()

@@ -5,8 +5,8 @@ class RL():
     def __init__(self,node) -> None:
         self.state_dim = 14
         self.action_dim = 6
-        self.max_action = (1.0,1.0,1.0,1.0,1.0,1.0)
-        self.min_action = (-1.0,-1.0,-1.0,-1.0,-1.0,-1.0)
+        self.max_action = 1 #[1.0,1.0,1.0,1.0,1.0,1.0]
+        self.min_action = -1 #[-1.0,-1.0,-1.0,-1.0,-1.0,-1.0]
         self.node = node
         self.stuck_state = []
     
@@ -28,7 +28,8 @@ class RL():
     def isDone(self,state):
         is_win = False
         is_done = False
-        if state[13] < 10: #self.node.input_battery_state < 10:
+        # if battery state lower than
+        if state[13] < 99.5: 
             is_done = True
         # if position y between 20 23 and x between -23 -27 -> done
         if -27 < float(state[6]) < -23 and 20 < float(state[7]) < 23:
@@ -37,12 +38,12 @@ class RL():
         return is_done,is_win
     
     def evaluateReward(self,done,win,state):
-        reward = 0.00001
+        reward = (-abs(float(state[6]) - (-24)) +  -abs(float(state[7]) - 22)) / 10
         if done:
             if win:
                 reward = 10 * state[13]
             else:
-                reward = -10
+                reward = -200
         return reward
 
     def newState(self):
@@ -79,7 +80,7 @@ class RL():
         int(state[7]))
 
         self.stuck_state.append(state)
-        if len(self.stuck_state) > 10000:
+        if len(self.stuck_state) > 1000:
             self.stuck_state.pop(0)
             if all(item == self.stuck_state[0] for item in self.stuck_state):
                 print("stucked!")

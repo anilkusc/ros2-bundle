@@ -3,18 +3,22 @@ import random
 import copy
 
 class GaussianNoise(object):
-    def __init__(self,action_dim,max_action,min_action):
+    def __init__(self, action_dim, max_action, min_action):
         self.action_dim = action_dim
-        self.max_action = max_action
         self.min_action = min_action
+        self.max_action = max_action
 
-    #def sample(self, action):
-    #    action = (action + np.random.normal(0, 1, size=self.action_dim)).clip(self.min_action, self.max_action)
-    #    return action
-    
     def sample(self, action):
-        return [random.uniform(-1,1),random.uniform(-1,1),random.uniform(-1,1),random.uniform(-1,1),random.uniform(-1,1),random.uniform(-1,1)]
-
+        if random.uniform(0, 1) < 0.5:
+            action = [random.uniform(-1,1),random.uniform(-1,1),random.uniform(-1,1),random.uniform(-1,1),random.uniform(-1,1),random.uniform(-1,1)]
+        else:
+            action = (action + np.random.normal(0, 1, size=self.action_dim)).clip(self.min_action, self.max_action)
+        #action = (action + np.random.normal(0, 1, size=self.action_dim)).clip(self.min_action, self.max_action)
+        return action
+    
+    #def sample(self, action):
+    #    return [random.uniform(-1,1),random.uniform(-1,1),random.uniform(-1,1),random.uniform(-1,1),random.uniform(-1,1),random.uniform(-1,1)]
+#
 
 class OUNoise(object):
     """Ornstein-Uhlenbeck process.

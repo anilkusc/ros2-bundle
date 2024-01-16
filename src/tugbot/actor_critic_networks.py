@@ -8,11 +8,11 @@ class Actor(nn.Module):
         super(Actor, self).__init__()
         self.net = nn.Sequential(
             nn.Linear(environment_states, hidden), 
-            nn.ReLU(), 
+            nn.Tanh(), 
             nn.Linear(hidden, hidden), 
-            nn.ReLU(), 
+            nn.Tanh(), 
             nn.Linear(hidden, hidden), 
-            nn.ReLU(), 
+            nn.Tanh(), 
             nn.Linear(hidden, action_dim)
         )
         # this is for weight randomity in init
@@ -29,11 +29,11 @@ class Critic(nn.Module):
         super(Critic, self).__init__()
         self.net = nn.Sequential(
             nn.Linear(environment_states + action_dim, hidden), 
-            nn.ReLU(), 
+            nn.Tanh(), 
             nn.Linear(hidden, hidden), 
-            nn.ReLU(), 
+            nn.Tanh(), 
             nn.Linear(hidden, hidden), 
-            nn.ReLU(), 
+            nn.Tanh(), 
             nn.Linear(hidden, 1)
         )
         
