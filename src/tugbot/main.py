@@ -16,7 +16,7 @@ def main(args=None):
     epsilon = 1#1
     max_epsilon = 1
     min_epsilon = 0.001
-    exploration_decay_rate = 0.01
+    exploration_decay_rate = 0.015
     state_dim = env.state_dim
     action_dim = env.action_dim
     max_action = env.max_action
@@ -44,6 +44,8 @@ def main(args=None):
                 action = noise_generator.sample(action)
 #
             next_state, reward, done = env.step(action)
+            if trajectory % 500 == 0:
+                print(reward)
             episode_total_reward += reward
             agent.replay_buffer.push((state, next_state, action, reward, float(done)))
             #if trajectory > max_trajectory:

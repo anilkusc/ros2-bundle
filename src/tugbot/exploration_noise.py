@@ -8,16 +8,22 @@ class GaussianNoise(object):
         self.min_action = min_action
         self.max_action = max_action
 
-    def sample(self, action):
-        if random.uniform(0, 1) < 0.8:
-            action = [random.uniform(-1,1),random.uniform(-1,1),random.uniform(-1,1),random.uniform(-1,1),random.uniform(-1,1),random.uniform(-1,1)]
-        else:
-            action = (action + np.random.normal(0, 1, size=self.action_dim)).clip(self.min_action, self.max_action)
-        #action = (action + np.random.normal(0, 1, size=self.action_dim)).clip(self.min_action, self.max_action)
-        return action
-    
     #def sample(self, action):
-    #    return [random.uniform(-1,1),random.uniform(-1,1),random.uniform(-1,1),random.uniform(-1,1),random.uniform(-1,1),random.uniform(-1,1)]
+    #    #if random.uniform(0, 1) < 0.8:
+    #    #    action = [random.uniform(-1,1),random.uniform(-1,1),random.uniform(-1,1),random.uniform(-1,1),random.uniform(-1,1),random.uniform(-1,1)]
+    #    #else:
+    #    #    action = (action + np.random.normal(0, 1, size=self.action_dim)).clip(self.min_action, self.max_action)
+    #    action = (action + np.random.normal(0, 1, size=self.action_dim)).clip(self.min_action, self.max_action)
+    #    return action
+    
+    def sample(self, action):
+        action[random.randint(0, 5)] = random.uniform(-1,1)
+        action[random.randint(0, 5)] = random.uniform(-1,1)
+        action[random.randint(0, 5)] = random.uniform(-1,1)
+        action[random.randint(0, 5)] = random.uniform(-1,1)
+        action[random.randint(0, 5)] = random.uniform(-1,1)
+        return action
+        #return [random.uniform(-1,1),random.uniform(-1,1),random.uniform(-1,1),random.uniform(-1,1),random.uniform(-1,1),random.uniform(-1,1)]
 #
 
 class OUNoise(object):

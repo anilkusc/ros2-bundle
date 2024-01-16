@@ -4,14 +4,14 @@
     <gravity>0 0 -9.8</gravity>
     <physics type='ode'>
       <max_step_size>0.01</max_step_size>
-      <real_time_factor>1</real_time_factor>
+      <real_time_factor>10</real_time_factor>
       <max_contacts>10</max_contacts>
     </physics>
-    <plugin name='ignition::gazebo::systems::Physics' filename='libignition-gazebo-physics-system.so'/>
-    <plugin name='ignition::gazebo::systems::UserCommands' filename='libignition-gazebo-user-commands-system.so'/>
-    <plugin name='ignition::gazebo::systems::SceneBroadcaster' filename='libignition-gazebo-scene-broadcaster-system.so'/>
-    <plugin name='ignition::gazebo::systems::Imu' filename='ignition-gazebo-imu-system'/>
-    <plugin name='ignition::gazebo::systems::Sensors' filename='ignition-gazebo-sensors-system'>
+    <plugin name='gz::sim::systems::Physics' filename='libignition-gazebo-physics-system.so'/>
+    <plugin name='gz::sim::systems::UserCommands' filename='libignition-gazebo-user-commands-system.so'/>
+    <plugin name='gz::sim::systems::SceneBroadcaster' filename='libignition-gazebo-scene-broadcaster-system.so'/>
+    <plugin name='gz::sim::systems::Imu' filename='ignition-gazebo-imu-system'/>
+    <plugin name='gz::sim::systems::Sensors' filename='ignition-gazebo-sensors-system'>
       <render_engine>ogre2</render_engine>
     </plugin>
 
@@ -100,17 +100,7 @@
               <property key="cardBackground" type="string">#666666</property>
           </ignition-gui>
       </plugin>
-      <plugin filename="Screenshot" name="Screenshot">
-          <ignition-gui>
-              <property type="bool" key="showTitleBar">false</property>
-              <property key="x" type="double">400</property>
-              <property key="y" type="double">0</property>
-              <property key="width" type="double">50</property>
-              <property key="height" type="double">50</property>
-              <property key="state" type="string">floating</property>
-              <property key="cardBackground" type="string">#666666</property>
-          </ignition-gui>
-      </plugin>
+
       <plugin filename="ComponentInspector" name="Component inspector">
           <ignition-gui>
               <property key="x" type="double">0</property>
@@ -195,7 +185,7 @@
         https://fuel.ignitionrobotics.org/1.0/MovAi/models/Tugbot
       </uri>
       <name>tugbot</name>
-      <pose>12 -10.6 1 0 0 0</pose>
+      <pose>0 0 1 0 0 0</pose>
     </include>
 
     <!-- Carts -->

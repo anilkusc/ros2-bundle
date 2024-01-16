@@ -1,5 +1,11 @@
 #!/bin/bash
 #set -xe
+current_bridges=$(ps aux | grep parameter_bridge | awk '{print $2}')
+for id in $current_bridges
+do
+    kill -9 $id
+done
+
 export GZ_VERSION=garden
 local_path=$(pwd)
 pkill -f ros_gz_bridge

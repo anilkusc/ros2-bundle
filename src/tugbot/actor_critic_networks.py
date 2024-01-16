@@ -16,9 +16,9 @@ class Actor(nn.Module):
             nn.Linear(hidden, action_dim)
         )
         # this is for weight randomity in init
-        for m in self.modules():
-            if isinstance(m, nn.Linear):
-                init.xavier_uniform_(m.weight)
+        #for m in self.modules():
+        #    if isinstance(m, nn.Linear):
+        #        init.xavier_uniform_(m.weight)
 
     def forward(self, state):
         return self.net(state)

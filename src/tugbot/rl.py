@@ -1,5 +1,6 @@
 import os
 import rclpy
+import math 
 
 class RL():
     def __init__(self,node) -> None:
@@ -29,21 +30,24 @@ class RL():
         is_win = False
         is_done = False
         # if battery state lower than
-        if state[13] < 99.5: 
+        if state[13] < 99: 
             is_done = True
         # if position y between 20 23 and x between -23 -27 -> done
-        if -27 < float(state[6]) < -23 and 20 < float(state[7]) < 23:
+        if -5 < float(state[6]) < 0 and 10 < float(state[7]) < 15 :
             is_done = True
             is_win = True
         return is_done,is_win
     
     def evaluateReward(self,done,win,state):
-        reward = (-abs(float(state[6]) - (-24)) +  -abs(float(state[7]) - 22)) / 10
+        #delta_x = -3 - state[6]
+        #delta_y = 13 - state[7]
+        #reward = ((delta_x**2 + delta_y**2)**0.5) * 0.1
+        reward = math.sqrt((-3 - state[6])**2 + (13 - state[7])**2) * -0.1
         if done:
             if win:
                 reward = 10 * state[13]
             else:
-                reward = -200
+                reward = -10
         return reward
 
     def newState(self):

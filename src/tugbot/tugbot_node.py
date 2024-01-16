@@ -44,7 +44,7 @@ class TugbotNode(Node):
         twist_msg = Twist()
         twist_msg.linear = Vector3(x=self.output_linear_x,y=self.output_linear_y,z=self.output_linear_z)
         twist_msg.angular = Vector3(x=self.output_angular_x,y=self.output_angular_y,z=self.output_angular_z)
-        #print(twist_msg)
+        
         self.publisher.publish(twist_msg)
         #self.get_logger().info('Published: "%s"' % twist_msg)
 
