@@ -9,7 +9,7 @@ class GaussianNoise(object):
         self.max_action = max_action
 
     def sample(self, action):
-        if random.uniform(0, 1) < 0.5:
+        if random.uniform(0, 1) < 0.8:
             action = [random.uniform(-1,1),random.uniform(-1,1),random.uniform(-1,1),random.uniform(-1,1),random.uniform(-1,1),random.uniform(-1,1)]
         else:
             action = (action + np.random.normal(0, 1, size=self.action_dim)).clip(self.min_action, self.max_action)
